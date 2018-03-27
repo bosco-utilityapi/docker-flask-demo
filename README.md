@@ -46,11 +46,28 @@ Whereas the /api endpoint gives your JSON:
 
 ### List Containers
 
-To see all your running Docker containers:
+To see your running Docker containers:
 
     $ docker container ls
     CONTAINER ID    IMAGE       COMMAND             CREATED         STATUS          PORTS                   NAMES
     da9aabbbb93b    env_vars    "python app.py"     4 minutes ago   Up 5 minutes    0.0.0.0:8000->8000/tcp  env_vars_app
+
+To see *ALL* your Docker containers, including those that are not running, add the `--all` options:
+
+    $ docker container ls --all
+
+
+### Access Bash Shell in a Container
+
+Since this Docker image was created with a bash shell, you can login to it with:
+
+    $ docker exec -u root -it env_vars_app bash
+    root@host:/#
+
+Use the exit command (or ^d) to return to your host:
+
+    root@host:/# exit
+    exit
 
 
 ### Stop a Container
